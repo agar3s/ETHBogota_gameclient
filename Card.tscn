@@ -1,0 +1,178 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Resources/Titles.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/001 The Scuttler.png" type="Texture" id=2]
+[ext_resource path="res://Resources/attrs.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Resources/fonts/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Card.gd" type="Script" id=5]
+[ext_resource path="res://Assets/icons/16x16_misc.png" type="Texture" id=6]
+[ext_resource path="res://Assets/icons/16x16_weapons.png" type="Texture" id=7]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 336, 8, 10, 8 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 47, 47, 16, 16 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 4 )
+
+[node name="Card" type="Control"]
+margin_right = 100.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 100, 160 )
+script = ExtResource( 5 )
+
+[node name="Bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.137255, 0.129412, 0.14902, 1 )
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 2
+
+[node name="Title" type="RichTextLabel" parent="Container"]
+margin_right = 100.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+theme = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]title[/center]"
+text = "title"
+
+[node name="Image" type="CenterContainer" parent="Container"]
+margin_top = 18.0
+margin_right = 100.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 54 )
+
+[node name="Bg" type="ColorRect" parent="Container/Image"]
+margin_left = 12.0
+margin_right = 88.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 76, 54 )
+color = Color( 1, 0.976471, 0.976471, 1 )
+
+[node name="Type" type="RichTextLabel" parent="Container/Image/Bg"]
+margin_left = -7.0
+margin_top = -4.0
+margin_right = 76.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 40, 9 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "Poison"
+text = "Poison"
+scroll_active = false
+
+[node name="Texture" type="TextureRect" parent="Container/Image"]
+margin_left = 20.0
+margin_right = 80.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 60, 54 )
+texture = ExtResource( 2 )
+stretch_mode = 6
+
+[node name="Attributes" type="HBoxContainer" parent="Container"]
+margin_top = 74.0
+margin_right = 100.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 0, 12 )
+custom_constants/separation = 0
+
+[node name="VSeparator" type="VSeparator" parent="Container/Attributes"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 4.0
+margin_bottom = 12.0
+
+[node name="HearthIcon" type="TextureRect" parent="Container/Attributes"]
+margin_left = 4.0
+margin_right = 19.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 15, 0 )
+texture = SubResource( 3 )
+stretch_mode = 4
+
+[node name="Hp" type="RichTextLabel" parent="Container/Attributes"]
+margin_left = 19.0
+margin_right = 40.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 21, 0 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]3/3[/center]"
+text = "3/3"
+scroll_active = false
+
+[node name="VSeparator2" type="VSeparator" parent="Container/Attributes"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 40.0
+margin_right = 71.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 31, 0 )
+
+[node name="DamageIcon" type="TextureRect" parent="Container/Attributes"]
+margin_left = 71.0
+margin_right = 86.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 15, 0 )
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Damage" type="RichTextLabel" parent="Container/Attributes"]
+margin_left = 86.0
+margin_right = 97.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 11, 0 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]2[/center]"
+text = "2"
+scroll_active = false
+
+[node name="Description" type="CenterContainer" parent="Container"]
+margin_top = 88.0
+margin_right = 100.0
+margin_bottom = 142.0
+
+[node name="Bg" type="ColorRect" parent="Container/Description"]
+margin_left = 5.0
+margin_right = 95.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 90, 54 )
+color = Color( 0.249609, 0.228516, 0.28125, 1 )
+
+[node name="Text" type="RichTextLabel" parent="Container/Description"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 92.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 84, 46 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_text = "makes 2 damage to new"
+text = "makes 2 damage to new"
+scroll_active = false
+
+[node name="Id" type="RichTextLabel" parent="Container"]
+margin_top = 144.0
+margin_right = 100.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 0, 12 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = " #23 - glomons"
+text = " #23 - glomons"
+scroll_active = false
