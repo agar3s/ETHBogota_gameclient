@@ -72,7 +72,7 @@ rect_min_size = Vector2( 40, 9 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "Poison"
+bbcode_text = "[center]Poison[/center]"
 text = "Poison"
 scroll_active = false
 
