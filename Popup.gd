@@ -12,9 +12,7 @@ func appear(message):
 
 func dissapear():
 	$AnimationPlayer.play_backwards("Appear")
-	print('finishing')
 	yield($AnimationPlayer, "animation_finished")
-	print('finished?')
 	hide()
 
 func _process(delta):

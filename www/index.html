@@ -1,36 +1,174 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Template</title>
+        <title>Arena Protocol? godo Game Demo</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <canvas id="canvas"></canvas>
         <script src="$GODOT_URL"></script>
         <script>
-            window.testCallback = (cb) => {
-                setTimeout(()=>{
-                    cb('ready');
-                }, 2000);
+                      
+          const STATUS = {
+            OFFLINE: 0,
+            CONNECTING: 1,
+            ONLINE: 2,
+            CONNECTED: 3,
+            PLAYING: 4,
+            ERROR: 5
+          };
+          const CONTRACT_ADDRESS = '0x867d11E5597C6AC27A44E69722f81Dd343C2149a';
+          var gameABI;
+          var myContract;
+          var selectedAccount;
+
+          var peerStatus = STATUS.OFFLINE; 
+          var peerConnection;
+
+          var matchConnection;
+          const sampleNames = ['Tetsuo777', 'Popeye', 'Deva', 'Athenea', 'Legolas', 'Teseo', 'Margarita'];
+          var playerName = sampleNames[Math.floor(Math.random()*sampleNames.length)];
+          var peerList = {
+            loaded: false, 
+            peers: []
+          };
+
+          var opponent = {
+            played: false,
+            action: '',
+            revealed: false 
+          };
+
+          const startPeer = () => {
+            console.log('getting a peer id');
+            peerStatus = STATUS.CONNECTING;
+            peerConnection = new Peer();
+            peerConnection.on('open', registerPeer);
+            peerConnection.on('connection', onOpponentConnected);
+          };
+
+          const registerPeer = async () => {
+            console.log('registering peer to network');
+            Arena.register(peerConnection);
+            await loadContract();
+            await klaytnRegister();
+          };
+
+          const onOpponentConnected = (_conn) => {
+            console.log('opponent connected');
+            console.log(_conn);
+            Arena.registerSendFunction(_conn, _conn.send);
+            Arena.setEventListener(eventHandler);
+            _conn.on('data', onMessageReceived);
+            matchConnection = _conn;
+            peerStatus = STATUS.PLAYING;
+          };
+
+          const onMessageReceived = (_data) => {
+            console.log('on message received');
+            console.log(_data);
+            // parse message if it is from the protocol redirect to arena
+            Arena.onMessageReceived(_data);
+          };
+
+          const connectToPeer = (_opponentID) => {
+            console.log('connecting to opponent id: ', _opponentID);
+            var conn = peerConnection.connect(_opponentID);
+            onOpponentConnected(conn);
+            Arena.registerMatch(peerConnection.id, conn.peer);
+          };
+
+          const eventHandler = {
+            onValidAction: (valid, action) => {
+                console.log('is valid: ', valid);
+                console.log('action: ', action);
+                opponent.played = true;
+                opponent.revealed = true;
+                opponent.action = action;
+            },
+            onOpponentPlayed: () => {
+              opponent.played = true;
+              opponent.revealed = false;
+              opponent.action = '';
             }
-            window.testCall = () => {
-                console.log('testing from godot');
-                console.log('getting a peer id');
-                //peerStatus = STATUS.CONNECTING;
-                var peerConnection = new Peer();
-                peerConnection.on('open', ()=>{console.log('connection open')});
-                peerConnection.on('connection', ()=>{});
+          }
+
+          fetch('gameABI.json').then(response => response.json()).then(json => gameABI = json);
+
+          const loadContract = async () => {
+            const accounts = await klaytn.enable();
+            selectedAccount = accounts[0];
+            myContract = new caver.klay.Contract(gameABI, CONTRACT_ADDRESS);
+          };
+
+          const klaytnRegister = async () => {
+            console.log('connecting to klaytn');
+            try {
+              var result = await myContract.send({
+                from: selectedAccount, gas: 1500000, value: 0
+              },
+              'register',
+              peerConnection.id, 
+              playerName);
+              peerStatus = STATUS.ONLINE;
+            } catch(error) {
+              console.error(error);
+              peerStatus = STATUS.ERROR;
             }
-            window.testReturn = (param) => {
-                console.log('testing from godot ', param);
-                return param;
-            }
+          };
+
+          const getPeerStatus = () => {
+            return peerStatus;
+          };
+
+          const requestPeerList = () => {
+            peerList.loaded = false;
+            
+            myContract.methods.getPlayers().call().then(response => {
+              peerList.peers = response.filter(peer => peer[0] != peerConnection.id);
+              
+              peerList.loaded = true;
+            })
+          };
+
+          const sendAction = (action) => {
+            Arena.declareAction(action);
+          };
+
+          const startNewRound = () => {
+            console.log('start new round');
+            // must get this new keyword from blockchain
+            opponent.played = false;
+            opponent.action = '';
+            opponent.revealed = false;
+            Arena.startTurn('new keyword');
+          };
+
+          const getPeerList = () => {
+            return peerList.peers;
+          };
+
+          function getPeerListo () {
+            return JSON.stringify(peerList);
+          };
+
+          const getMatchConnection = () => {
+            return matchConnection && matchConnection._open;
+          };
+
+          const getOpponent = () => {
+            return JSON.stringify(opponent);
+          };
+
+
         </script>
         <script>
             var engine = new Engine($GODOT_CONFIG);
             engine.startGame();
         </script>
         <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
-        <script src="http://localhost:3000/arena.js"></script>
+        <script src="arena.js"></script>
+        <script src="caver.min.js"></script>
     </body>
 </html>

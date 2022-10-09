@@ -10,8 +10,9 @@ func _on_connect():
 	print('init connection')
 	connect_btn.disabled = true
 	GUI.popup.appear('connecting')
-	yield(get_tree().create_timer(5), 'timeout')
+	Globals.request_connection()
+	var peer_status = yield(Globals, 'player_connected')
+	yield(get_tree().create_timer(0.1),'timeout')
 	get_tree().change_scene("res://Lobby.tscn")
-	yield(GUI.popup.dissapear(), 'completed')
 	connect_btn.disabled = false
 	

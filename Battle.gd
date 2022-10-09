@@ -27,6 +27,7 @@ var opponent_action = ''
 
 func _ready():
 	game_round = 1
+	GUI.popup.dissapear()
 	$BigMessage/Message.bbcode_text = '[center]round %d[/center]' % game_round
 	#card_test.reveal()
 	my_card_1.connect('card_selected', self, '_on_card_selected', [my_card_1])
@@ -37,12 +38,14 @@ func _ready():
 	reject_card_btn.connect('button_down', self, '_on_card_return')
 	_shuffle_opponent_cards()
 	$Player/AnimationPlayer.play("Intro")
+	Globals.request_new_round()
 	yield($Player/AnimationPlayer, "animation_finished")
 
+	Globals.connect('opponent_played', self, '_on_opponent_play_card')
+	Globals.connect('game_revealed', self, '_reveal_cards')
 
 func _on_card_selected(card):
 	selected_card = card
-	print('animate cad')
 	if selected_card == my_card_1:
 		$Player/AnimationPlayer.play("ChooseCard0")
 	if selected_card == my_card_2:
@@ -60,10 +63,8 @@ func _on_card_played():
 	my_card_in_play.show()
 	my_card_in_play.face_down()
 	
-	yield(get_tree().create_timer(0.5), "timeout")
-	_on_opponent_play_card()
-	yield(get_tree().create_timer(0.5), "timeout")
-	_reveal_cards()
+	Globals.send_action(main_card.title)
+	
 
 
 func _on_card_return():
@@ -96,9 +97,13 @@ func _on_opponent_play_card():
 	opponent_card_in_play.visible = true
 	card.visible = false
 	card.rect_position = _original_pos
-	opponent_card_in_play.set_card(card)
 
-func _reveal_cards():
+func _reveal_cards(opponent_action):
+	print('oponnent action!! ', opponent_action)
+	for card in [my_card_1, my_card_2, my_card_3]:
+		if opponent_action == card.title:
+			opponent_card_in_play.set_card(card)
+	
 	$Player/AnimationPlayer.play("Resolve")
 	yield($Player/AnimationPlayer, "animation_finished")
 	if my_action == opponent_action:
@@ -115,6 +120,7 @@ func _reveal_cards():
 	yield($Player/AnimationPlayer, "animation_finished")
 	$Player/Score.set_score(my_score)
 	$Opponent/Score.set_score(opponent_score)
+	Globals.request_new_round()
 	yield(get_tree().create_timer(1.5), 'timeout')
 	if my_score == 3:
 		$Player/AnimationPlayer.play("gameWon")

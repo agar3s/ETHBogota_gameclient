@@ -2974,6 +2974,7 @@ margin_right = 480.0
 margin_bottom = 480.0
 
 [node name="Button" type="Button" parent="Battleground"]
+visible = false
 margin_right = 12.0
 margin_bottom = 20.0
 text = "test"
@@ -3186,6 +3187,7 @@ scroll_active = false
 [node name="BigMessage" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = true
 mouse_filter = 2
 
 [node name="yellow" type="ColorRect" parent="BigMessage"]

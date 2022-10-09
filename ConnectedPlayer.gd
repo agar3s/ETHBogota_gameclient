@@ -12,16 +12,13 @@ onready var status_icon: TextureRect = find_node('Status')
 
 func _ready():
 	challenge_btn.connect('button_down', self, '_on_challenge')
-	print(player_label)
 	set_player_name(player_name)
 
 
 func set_player_name(val):
 	player_name = val
-	print('new player name %s' % player_name)
 	if player_label:
 		player_label.bbcode_text = val
-		print('set name')
 
 func set_player_peer_id(val):
 	player_peer_id = val
@@ -30,10 +27,10 @@ func set_player_status(val):
 	player_status = val
 	if not status_icon: return
 	match val:
-		0: status_icon.modulate = Color.red
-		1: status_icon.modulate = Color.green
-		2: status_icon.modulate = Color.yellow
-	challenge_btn.disabled = player_status != 1
+		'0': status_icon.modulate = Color.red
+		'1': status_icon.modulate = Color.green
+		'2': status_icon.modulate = Color.yellow
+	challenge_btn.disabled = player_status != '1'
 	
 func set_connecting(val):
 	connecting = val
@@ -41,10 +38,5 @@ func set_connecting(val):
 func _on_challenge():
 	connecting = true
 	GUI.popup.appear('sending challenge')
-	Globals.emit_signal('player_challenged', player_peer_id)
-	yield(get_tree().create_timer(2), 'timeout')
-	GUI.popup.base_message = 'challenge accepted!'
-	yield(get_tree().create_timer(2), 'timeout')
-	get_tree().change_scene("res://Battle.tscn")
-	GUI.popup.dissapear()
+	Globals.request_match(player_peer_id)
 	
