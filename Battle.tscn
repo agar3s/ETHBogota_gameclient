@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/011 Despereaux.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Resources/GameTheme.tres" type="Theme" id=6]
 [ext_resource path="res://background_shader.tres" type="Material" id=7]
 [ext_resource path="res://Resources/fonts/ThaleahFat.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Score.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -1255,6 +1256,18 @@ tracks/53/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
+tracks/54/type = "value"
+tracks/54/path = NodePath("BigMessage/Message:bbcode_text")
+tracks/54/interp = 1
+tracks/54/loop_wrap = true
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "" ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Resolve"
@@ -1726,6 +1739,700 @@ tracks/31/enabled = true
 tracks/31/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.35, 1.25, 1.6 )
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "gameLost"
+length = 2.5
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("BigMessage/yellow:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -480, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("BigMessage/yellow:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("BigMessage/bluez:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 480, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("BigMessage/bluez:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("BigMessage/Message:rect_position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 0.6, 1.8, 2.05 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("BigMessage/Message:rect_position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 650, -0.25, 0, 0.25, 0, 650, -0.25, 0, 0.25, 0, 280, -0.25, 0, 0.25, 0, 280, -0.25, 0, 0.25, 0, -85, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 0.6, 1.8, 2.05 )
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reset_arena"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Overlay/Countdown:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Battleground/CardA:rect_position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 35, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("Battleground/CardA:rect_position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 61, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("Battleground/CardA:rect_rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("Battleground/CardA:rect_scale:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("Battleground/CardA:rect_scale:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/13/type = "bezier"
+tracks/13/path = NodePath("Battleground/CardA:modulate:r")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/14/type = "bezier"
+tracks/14/path = NodePath("Battleground/CardA:modulate:g")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/15/type = "bezier"
+tracks/15/path = NodePath("Battleground/CardA:modulate:b")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/16/type = "bezier"
+tracks/16/path = NodePath("Battleground/CardA:modulate:a")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.7, 0.8 )
+}
+tracks/17/type = "bezier"
+tracks/17/path = NodePath("Battleground/CardB:rect_position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"points": PoolRealArray( 280, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/18/type = "bezier"
+tracks/18/path = NodePath("Battleground/CardB:rect_position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"points": PoolRealArray( -5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/19/type = "bezier"
+tracks/19/path = NodePath("Battleground/CardB:rect_rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/20/type = "bezier"
+tracks/20/path = NodePath("Battleground/CardB:rect_scale:x")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/21/type = "bezier"
+tracks/21/path = NodePath("Battleground/CardB:rect_scale:y")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/22/type = "bezier"
+tracks/22/path = NodePath("Battleground/CardB:rect_pivot_offset:x")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"points": PoolRealArray( 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/23/type = "bezier"
+tracks/23/path = NodePath("Battleground/CardB:rect_pivot_offset:y")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"points": PoolRealArray( 128, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Battleground/CardA/Viewport/CardInPlay:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Battleground/CardB/Viewport/CardInPlay:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/26/type = "bezier"
+tracks/26/path = NodePath("Battleground/CardB:modulate:r")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/27/type = "bezier"
+tracks/27/path = NodePath("Battleground/CardB:modulate:g")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/28/type = "bezier"
+tracks/28/path = NodePath("Battleground/CardB:modulate:b")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/29/type = "bezier"
+tracks/29/path = NodePath("Battleground/CardB:modulate:a")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.7, 0.8 )
+}
+tracks/30/type = "bezier"
+tracks/30/path = NodePath("BigMessage/blue:rect_position:x")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"points": PoolRealArray( 480, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2 )
+}
+tracks/31/type = "bezier"
+tracks/31/path = NodePath("BigMessage/blue:rect_position:y")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2 )
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("BigMessage/Message:bbcode_text")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "[center]You lose[/center]" ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "gameWon"
+length = 2.5
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("BigMessage/yellow:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -480, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("BigMessage/yellow:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("BigMessage/bluez:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 480, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("BigMessage/bluez:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2.05 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("BigMessage/Message:rect_position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 0.6, 1.8, 2.05 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("BigMessage/Message:rect_position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 650, -0.25, 0, 0.25, 0, 650, -0.25, 0, 0.25, 0, 280, -0.25, 0, 0.25, 0, 280, -0.25, 0, 0.25, 0, -85, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 0.6, 1.8, 2.05 )
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reset_arena"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Overlay/Countdown:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Battleground/CardA:rect_position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 35, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("Battleground/CardA:rect_position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 61, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("Battleground/CardA:rect_rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("Battleground/CardA:rect_scale:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("Battleground/CardA:rect_scale:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/13/type = "bezier"
+tracks/13/path = NodePath("Battleground/CardA:modulate:r")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/14/type = "bezier"
+tracks/14/path = NodePath("Battleground/CardA:modulate:g")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/15/type = "bezier"
+tracks/15/path = NodePath("Battleground/CardA:modulate:b")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/16/type = "bezier"
+tracks/16/path = NodePath("Battleground/CardA:modulate:a")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.7, 0.8 )
+}
+tracks/17/type = "bezier"
+tracks/17/path = NodePath("Battleground/CardB:rect_position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"points": PoolRealArray( 280, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/18/type = "bezier"
+tracks/18/path = NodePath("Battleground/CardB:rect_position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"points": PoolRealArray( -5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/19/type = "bezier"
+tracks/19/path = NodePath("Battleground/CardB:rect_rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/20/type = "bezier"
+tracks/20/path = NodePath("Battleground/CardB:rect_scale:x")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/21/type = "bezier"
+tracks/21/path = NodePath("Battleground/CardB:rect_scale:y")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/22/type = "bezier"
+tracks/22/path = NodePath("Battleground/CardB:rect_pivot_offset:x")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"points": PoolRealArray( 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/23/type = "bezier"
+tracks/23/path = NodePath("Battleground/CardB:rect_pivot_offset:y")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"points": PoolRealArray( 128, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Battleground/CardA/Viewport/CardInPlay:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Battleground/CardB/Viewport/CardInPlay:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/26/type = "bezier"
+tracks/26/path = NodePath("Battleground/CardB:modulate:r")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/27/type = "bezier"
+tracks/27/path = NodePath("Battleground/CardB:modulate:g")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/28/type = "bezier"
+tracks/28/path = NodePath("Battleground/CardB:modulate:b")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.8 )
+}
+tracks/29/type = "bezier"
+tracks/29/path = NodePath("Battleground/CardB:modulate:a")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.7, 0.8 )
+}
+tracks/30/type = "bezier"
+tracks/30/path = NodePath("BigMessage/blue:rect_position:x")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"points": PoolRealArray( 480, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2 )
+}
+tracks/31/type = "bezier"
+tracks/31/path = NodePath("BigMessage/blue:rect_position:y")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.35, 2 )
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("BigMessage/Message:bbcode_text")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "[center][shake rate=60 level=20][rainbow freq=0.5 sat=1 val=1]You Win[/rainbow][/shake][/center]" ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -2277,8 +2984,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 35.0
 margin_top = 61.0
-margin_right = 2595.0
-margin_bottom = 1917.0
+margin_right = 3075.0
+margin_bottom = 2237.0
 rect_pivot_offset = Vector2( 80, 128 )
 
 [node name="Viewport" type="Viewport" parent="Battleground/CardA"]
@@ -2297,8 +3004,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 280.0
 margin_top = -5.0
-margin_right = 2840.0
-margin_bottom = 1851.0
+margin_right = 3320.0
+margin_bottom = 2171.0
 rect_pivot_offset = Vector2( 80, 128 )
 
 [node name="Viewport" type="Viewport" parent="Battleground/CardB"]
@@ -2317,6 +3024,12 @@ margin_top = 11.0
 margin_right = 480.0
 margin_bottom = 171.0
 
+[node name="Score" parent="Opponent" instance=ExtResource( 9 )]
+margin_left = 10.0
+margin_top = 170.0
+margin_right = 110.0
+margin_bottom = 213.0
+
 [node name="Hand" type="CenterContainer" parent="Opponent"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2332,6 +3045,7 @@ margin_left = 12.0
 margin_right = 112.0
 title = "Rock"
 hp = 2
+type = ""
 damage = 1
 locked = true
 face_down = true
@@ -2339,10 +3053,10 @@ face_down = true
 [node name="OpponentCard2" parent="Opponent/Hand/HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 127.0
 margin_right = 227.0
-title = "paper"
+title = "Paper"
 image = ExtResource( 2 )
 hp = 2
-type = "Earth"
+type = ""
 damage = 1
 locked = true
 face_down = true
@@ -2352,20 +3066,10 @@ margin_left = 242.0
 margin_right = 342.0
 title = "Scissors"
 image = ExtResource( 3 )
+type = ""
 id = 66
 locked = true
 face_down = true
-
-[node name="OpponentCard4" parent="Opponent/Hand/HBoxContainer" instance=ExtResource( 1 )]
-visible = false
-margin_left = 249.0
-margin_top = 190.0
-margin_right = 349.0
-margin_bottom = 350.0
-rect_scale = Vector2( 1.1, 1.1 )
-title = "Scissors"
-image = ExtResource( 3 )
-id = 66
 
 [node name="Player" type="Control" parent="."]
 margin_top = 474.0
@@ -2382,6 +3086,8 @@ anims/PlayCard = SubResource( 5 )
 anims/RESET = SubResource( 6 )
 anims/Resolve = SubResource( 10 )
 anims/endturn = SubResource( 15 )
+anims/gameLost = SubResource( 21 )
+anims/gameWon = SubResource( 20 )
 anims/lose = SubResource( 13 )
 anims/tie = SubResource( 14 )
 anims/win = SubResource( 12 )
@@ -2399,15 +3105,16 @@ margin_left = 88.0
 margin_right = 188.0
 title = "Rock"
 hp = 2
+type = ""
 damage = 1
 
 [node name="MyCard2" parent="Player/Hand/HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 192.0
 margin_right = 292.0
-title = "paper"
+title = "Paper"
 image = ExtResource( 2 )
 hp = 2
-type = "Earth"
+type = ""
 damage = 1
 
 [node name="MyCard3" parent="Player/Hand/HBoxContainer" instance=ExtResource( 1 )]
@@ -2415,7 +3122,14 @@ margin_left = 296.0
 margin_right = 396.0
 title = "Scissors"
 image = ExtResource( 3 )
+type = ""
 id = 66
+
+[node name="Score" parent="Player" instance=ExtResource( 9 )]
+margin_left = 365.0
+margin_top = -53.0
+margin_right = 465.0
+margin_bottom = -10.0
 
 [node name="Overlay" type="Control" parent="."]
 visible = false
@@ -2443,6 +3157,7 @@ margin_left = 185.0
 margin_top = 507.0
 margin_right = 299.0
 margin_bottom = 527.0
+mouse_default_cursor_shape = 2
 theme = ExtResource( 6 )
 text = "play card"
 
@@ -2452,6 +3167,7 @@ margin_left = 185.0
 margin_top = 538.0
 margin_right = 299.0
 margin_bottom = 558.0
+mouse_default_cursor_shape = 2
 theme = ExtResource( 6 )
 text = "choose other"
 
@@ -2508,6 +3224,18 @@ margin_bottom = 82.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = SubResource( 16 )
 bbcode_enabled = true
-bbcode_text = "[center]round 1[/center]"
-text = "round 1"
 scroll_active = false
+
+[node name="Score" parent="BigMessage" instance=ExtResource( 9 )]
+visible = false
+margin_left = 69.0
+margin_top = 384.0
+margin_right = 169.0
+margin_bottom = 414.0
+
+[node name="Score2" parent="BigMessage" instance=ExtResource( 9 )]
+visible = false
+margin_left = 311.0
+margin_top = 384.0
+margin_right = 411.0
+margin_bottom = 414.0
