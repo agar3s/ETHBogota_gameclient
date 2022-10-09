@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/16x16_tiles_ditherPatterns.png-67968155eded70233269f26d2bf60d97.s3tc.stex"
-path.etc="res://.import/16x16_tiles_ditherPatterns.png-67968155eded70233269f26d2bf60d97.etc.stex"
+path.s3tc="res://.import/fondo.png-a55019c33bcd265081118d8c687ac113.s3tc.stex"
+path.etc="res://.import/fondo.png-a55019c33bcd265081118d8c687ac113.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/icons/16x16_tiles_ditherPatterns.png"
-dest_files=[ "res://.import/16x16_tiles_ditherPatterns.png-67968155eded70233269f26d2bf60d97.s3tc.stex", "res://.import/16x16_tiles_ditherPatterns.png-67968155eded70233269f26d2bf60d97.etc.stex" ]
+source_file="res://Assets/fondo.png"
+dest_files=[ "res://.import/fondo.png-a55019c33bcd265081118d8c687ac113.s3tc.stex", "res://.import/fondo.png-a55019c33bcd265081118d8c687ac113.etc.stex" ]
 
 [params]
 

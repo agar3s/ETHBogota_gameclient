@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Template</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script src="$GODOT_URL"></script>
+        <script>
+            window.testCallback = (cb) => {
+                setTimeout(()=>{
+                    cb('ready');
+                }, 2000);
+            }
+            window.testCall = () => {
+                console.log('testing from godot');
+                console.log('getting a peer id');
+                //peerStatus = STATUS.CONNECTING;
+                var peerConnection = new Peer();
+                peerConnection.on('open', ()=>{console.log('connection open')});
+                peerConnection.on('connection', ()=>{});
+            }
+            window.testReturn = (param) => {
+                console.log('testing from godot ', param);
+                return param;
+            }
+        </script>
+        <script>
+            var engine = new Engine($GODOT_CONFIG);
+            engine.startGame();
+        </script>
+        <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+        <script src="http://localhost:3000/arena.js"></script>
+    </body>
+</html>

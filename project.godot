@@ -11,14 +11,21 @@ config_version=4
 [application]
 
 config/name="Ethbog_game"
-run/main_scene="res://Battle.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GUI="*res://UI.tscn"
+Globals="*res://Globals.gd"
 
 [display]
 
 window/size/width=480
 window/size/height=640
 window/size/always_on_top=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gui]
 
